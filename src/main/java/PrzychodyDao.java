@@ -5,7 +5,7 @@ public class PrzychodyDao {
 
         private static final String URL = "jdbc:mysql://localhost:3306/wydatki?characterEncoding=utf8";
         private static final String USER = "root";
-        private static final String PASS = "*****";
+        private static final String PASS = "kociakolka";
         private Connection connection;
 
 
@@ -41,16 +41,16 @@ public class PrzychodyDao {
 
 
         public void save (Przychody przychody) {
-            final String sql="insert into home_budget (type, description, amount, date ) values (?, ?, ?,?,?)";
+            final String sql="insert into home_budget (type, description, amount, date ) values (?, ?, ?,?)";
             try
             {
                 PreparedStatement prepStmt = connection.prepareStatement (sql);
-                prepStmt.setString(2,przychody.getType ());
-                prepStmt.setString(3,przychody.getDescription());
-                prepStmt.setLong(4,przychody.getAmount());
+                prepStmt.setString(1,przychody.getType ());
+                prepStmt.setString(2,przychody.getDescription());
+                prepStmt.setLong(3,przychody.getAmount());
                 LocalDate date=przychody.getDate();
                 Date sqlDate=Date.valueOf(date);
-                prepStmt.setDate(5, sqlDate);
+                prepStmt.setDate(4, sqlDate);
                 prepStmt.executeUpdate();
             }
             catch(SQLException e ) {
